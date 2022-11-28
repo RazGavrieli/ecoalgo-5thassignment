@@ -20,19 +20,20 @@ def isorg(p1values: list, p2values: list, p1get: list, p2get: list = None):
         a = p1values[i]*p2get[i]
         b = p1values[i]*p1get[i]
         if a != 0 and b != 0 and b < a:
-            jump = 0.0000001
+            jump = 0.01
             while b < a:
                 p1get[i] += jump
                 p2get[i] -= jump
                 a = p1values[i]*p2get[i]
                 b = p1values[i]*p1get[i]
-            return p1get, p2get
+            return p1get, p2get # return False
 
     return True
 
 
 if __name__ == "__main__":
-    print(isorg(p1values=[10,20,30,40], p2values=[40,30,20,10], p1get=[0.7, 0.4, 0, 1], p2get=[0.3, 0.6, 1, 0]))
+    print(isorg(p1values=[10,20,30,40], p2values=[40,30,20,10], p1get=[0.7, 0.4, 0, 1], p2get=[0.3, 0.6, 1, 0])) 
     print(isorg(p1values=[10,20,30,40], p2values=[40,30,20,10], p1get=[0.6, 0.5, 0, 1], p2get=[0.4, 0.5, 1, 0]))
 
-    print(isorg(p1values=[15,15,40,30], p2values=[40,25,30,5], p1get=[0.6, 0.5, 0, 1], p2get=[0.4, 0.5, 1, 0]))
+    print(isorg(p1values=[15,15,40,30], p2values=[40,25,30,5], p1get=[0.2, 0.5, 0, 1], p2get=[0.8, 0.5, 1, 0])) # Ivana and Donald false
+    print(isorg(p1values=[15,15,40,30], p2values=[40,25,30,5], p1get=[0.6, 0.5, 0, 1], p2get=[0.4, 0.5, 1, 0])) # Ivana and Donald true
